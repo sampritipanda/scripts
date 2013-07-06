@@ -4,11 +4,6 @@
 read -p "Ruby Version: " RUBY
 read -p "Rails Version: " RAILS
 
-# Get proper privileges
-echo ""
-echo "Running this script requires root privileges.\nYou will be asked to enter your root password"
-sudo -s
-
 # Install requirements
 sudo apt-get update
 sudo apt-get install -y curl
@@ -28,7 +23,7 @@ rvm rubygems current
 
 # Install necessary gems
 gem install bundler
-gem install rails
+gem install rails --version $RAILS
 
 # Exit out of the script
 exit
