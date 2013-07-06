@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Ask for versions
+read -p "Ruby Version: " RUBY
+read -p "Rails Version: " RAILS
+
+# Get proper privileges
+echo ""
+echo "Running this script requires root privileges.\nYou will be asked to enter your root password"
+sudo -s
+
+# Install requirements
+sudo apt-get update
+sudo apt-get install -y curl
+
+# Set up rvm
+\curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+bash
+rvm requirements
+
+# Install ruby
+rvm install $RUBY
+rvm use $RUBY --default
+
+# Install RubyGems
+rvm rubygems current
+
+# Install necessary gems
+gem install bundler
+gem install rails
+
+# Exit out of the script
+exit
