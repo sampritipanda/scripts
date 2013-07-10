@@ -10,20 +10,12 @@ sudo apt-get install -y curl
 sudo apt-get install -y git-core
 sudo apt-get install -y libqtwebkit-dev
 sudo apt-get install -y xvfb
-wget -qO- https://toolbelt.heroku.com/install.sh | sh
-
-# Set up ssh keys
-ssh-keygen -t rsa
-
-# Set up heroku
-heroku login
-heroku keys:add
+wget -qO- https://toolbelt.heroku.com/install.sh | bash
 
 # Set up rvm
 \curl -L https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 bash
-exit
 rvm requirements
 
 # Install ruby
