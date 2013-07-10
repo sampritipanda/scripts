@@ -1,0 +1,52 @@
+#!/bin/bash
+
+read -p "Fork the localsupport repo on github before continuing"
+echo ""
+read -p "GitHub username: " GITHUB
+
+# Install requirements
+sudo apt-get update
+sudo apt-get install -y curl
+sudo apt-get install -y git-core
+wget -qO- https://toolbelt.heroku.com/install.sh | sh
+
+# Set up ssh keys
+ssh-keygen -t rsa
+
+# Set up heroku
+heroku login
+heroku keys:add
+
+# Set up rvm
+\curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+bash
+exit
+rvm requirements
+
+# Install ruby
+rvm install 1.9.3
+rvm use 1.9.3 --default
+
+# Install RubyGems
+rvm rubygems current
+
+# Install necessary gems
+gem install bundler
+
+# Install LocalSupport
+git clone https://github.com/$GITHUB/LocalSupport
+cd LocalSupport
+bundle install
+
+# Install XVFB
+sudo apt-get install xvfb
+Xvfb :1 -screen 0 1280x768x24 &
+export DISPLAY=:1
+
+# Run the tests
+bundle exec cucumber
+bundle exec rake spec
+
+# Exit out of the script
+exit
