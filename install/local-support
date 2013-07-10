@@ -8,6 +8,8 @@ read -p "GitHub username: " GITHUB
 sudo apt-get update
 sudo apt-get install -y curl
 sudo apt-get install -y git-core
+sudo apt-get install -y libqtwebkit-dev
+sudo apt-get install -y xvfb
 wget -qO- https://toolbelt.heroku.com/install.sh | sh
 
 # Set up ssh keys
