@@ -12,6 +12,7 @@ sudo apt-get install -y curl
 \curl -L https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 bash
+exit
 rvm requirements
 
 # Install ruby
